@@ -25,6 +25,26 @@
     <url-pattern>/oauth/token</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>OrganizationServlet</servlet-name>
+    <servlet-class>com.doccollab.organization.servlets.OrganizationServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>OrganizationServlet</servlet-name>
+    <url-pattern>/api/v1/organizations</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.doccollab.user.servlets.UserServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/api/v1/organizations/*</url-pattern>
+  </servlet-mapping>
+
   <filter>
     <filter-name>OAuthFilter</filter-name>
     <filter-class>com.doccollab.auth.servlets.OAuthFilter</filter-class>

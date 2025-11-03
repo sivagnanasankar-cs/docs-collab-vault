@@ -1,5 +1,6 @@
 package com.doccollab.auth.utils;
 
+import com.doccollab.utils.ConfigUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,7 +13,7 @@ import java.util.function.Function;
 
 public class JwtUtil {
 
-    private static final Key SECRET_KEY = Keys.hmacShaKeyFor("secretsecretsecretsecretsecretsecretsecretsecretsecretsecretsecretsecret".getBytes());
+    private static final Key SECRET_KEY = Keys.hmacShaKeyFor(ConfigUtil.getProperty("jwt.secret").getBytes());
     private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 10; // 10 hours
 
     public String generateToken(String subject, Map<String, Object> claims) {

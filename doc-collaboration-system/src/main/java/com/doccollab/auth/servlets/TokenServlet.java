@@ -3,6 +3,7 @@ package com.doccollab.auth.servlets;
 import com.doccollab.auth.dao.OAuthClientDAO;
 import com.doccollab.auth.models.OAuthClient;
 import com.doccollab.auth.utils.JwtUtil;
+import com.doccollab.auth.utils.PasswordUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
@@ -29,21 +30,24 @@ public class TokenServlet extends HttpServlet {
             String clientId = credentials[0];
             String clientSecret = credentials[1];
 
-            // In a real application, you would look up the client by clientId
-            // and verify the clientSecret against a hashed version in the database.
-            // For this example, we'll assume the client is valid.
+            OAuthClient client = oAuthClientDAO.findByClientId(clientId);
 
-            Map<String, Object> claims = new HashMap<>();
-            // Add any necessary claims for the client
+            if (client != null && client.getClientSecretHash().equals(PasswordUtil.hashPassword(clientSecret))) {
+                Map<String, Object> claims = new HashMap<>();
+                claims.put("scopes", client.getScopes());
 
-            String token = jwtUtil.generateToken(clientId, claims);
+                String token = jwtUtil.generateToken(clientId, claims);
 
-            Map<String, String> response = new HashMap<>();
-            response.put("access_token", token);
-            response.put("token_type", "bearer");
+                Map<String, String> response = new HashMap<>();
+                response.put("access_token", token);
+                response.put("token_type", "bearer");
 
-            resp.setContentType("application/json");
-            resp.getWriter().write(objectMapper.writeValueAsString(response));
+                resp.setContentType("application/json");
+                resp.getWriter().write(objectMapper.writeValueAsString(response));
+            } else {
+                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                resp.getWriter().write("Invalid client credentials");
+            }
         } else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             resp.getWriter().write("Unsupported grant type");
@@ -55,7 +59,6 @@ public class TokenServlet extends HttpServlet {
             String base64Credentials = authorizationHeader.substring("Basic ".length()).trim();
             byte[] credDecoded = Base64.getDecoder().decode(base64Credentials);
             String credentials = new String(credDecoded);
-            // credentials = username:password
             return credentials.split(":", 2);
         }
         return new String[0];
