@@ -3,7 +3,7 @@ CREATE TABLE organizations (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     domain VARCHAR(255),
-    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    created_at BIGINT
 );
 
 -- Users
@@ -14,7 +14,7 @@ CREATE TABLE users (
     name VARCHAR(255),
     password_hash VARCHAR(255),
     status VARCHAR(50),
-    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    created_at BIGINT
 );
 
 -- Applications
@@ -33,7 +33,7 @@ CREATE TABLE file_meta (
     path VARCHAR(1024) NOT NULL,
     size BIGINT,
     mime VARCHAR(255),
-    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    created_at BIGINT,
     current_version_id BIGINT
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE file_versions (
     version_no INT NOT NULL,
     storage_key VARCHAR(1024) NOT NULL,
     uploaded_by BIGINT NOT NULL REFERENCES users(id),
-    uploaded_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    uploaded_at BIGINT,
     status VARCHAR(50)
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE jobs (
     type VARCHAR(255),
     payload TEXT,
     status VARCHAR(50),
-    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    started_at TIMESTAMP WITHOUT TIME ZONE,
-    finished_at TIMESTAMP WITHOUT TIME ZONE
+    created_at BIGINT,
+    started_at BIGINT,
+    finished_at BIGINT
 );

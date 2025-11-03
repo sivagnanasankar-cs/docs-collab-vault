@@ -5,7 +5,6 @@ import com.doccollab.organization.models.Organization;
 import com.doccollab.user.models.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "file_meta")
@@ -35,7 +34,7 @@ public class FileMeta {
     private String mime;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private Long createdAt;
 
     @Column(name = "current_version_id")
     private Long currentVersionId;
@@ -96,11 +95,11 @@ public class FileMeta {
         this.mime = mime;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 

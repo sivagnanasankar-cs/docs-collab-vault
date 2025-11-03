@@ -1,7 +1,6 @@
 package com.doccollab.organization.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "organizations")
@@ -17,7 +16,7 @@ public class Organization {
     private String domain;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private Long createdAt;
 
     public Long getId() {
         return id;
@@ -43,11 +42,11 @@ public class Organization {
         this.domain = domain;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 }

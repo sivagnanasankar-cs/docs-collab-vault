@@ -1,7 +1,6 @@
 package com.doccollab.jobs.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "jobs")
@@ -19,13 +18,13 @@ public class Job {
     private String status;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private Long createdAt;
 
     @Column(name = "started_at")
-    private LocalDateTime startedAt;
+    private Long startedAt;
 
     @Column(name = "finished_at")
-    private LocalDateTime finishedAt;
+    private Long finishedAt;
 
     public Long getId() {
         return id;
@@ -59,27 +58,27 @@ public class Job {
         this.status = status;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getStartedAt() {
+    public Long getStartedAt() {
         return startedAt;
     }
 
-    public void setStartedAt(LocalDateTime startedAt) {
+    public void setStartedAt(Long startedAt) {
         this.startedAt = startedAt;
     }
 
-    public LocalDateTime getFinishedAt() {
+    public Long getFinishedAt() {
         return finishedAt;
     }
 
-    public void setFinishedAt(LocalDateTime finishedAt) {
+    public void setFinishedAt(Long finishedAt) {
         this.finishedAt = finishedAt;
     }
 }

@@ -3,7 +3,6 @@ package com.doccollab.user.models;
 import com.doccollab.organization.models.Organization;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
@@ -28,7 +27,7 @@ public class User {
     private String status;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private Long createdAt;
 
     public Long getId() {
         return id;
@@ -78,11 +77,11 @@ public class User {
         this.status = status;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 }

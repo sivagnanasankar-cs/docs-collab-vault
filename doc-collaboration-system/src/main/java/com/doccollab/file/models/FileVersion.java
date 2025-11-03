@@ -3,7 +3,6 @@ package com.doccollab.file.models;
 import com.doccollab.user.models.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "file_versions")
@@ -28,7 +27,7 @@ public class FileVersion {
     private User uploadedBy;
 
     @Column(name = "uploaded_at", updatable = false)
-    private LocalDateTime uploadedAt;
+    private Long uploadedAt;
 
     private String status;
 
@@ -72,11 +71,11 @@ public class FileVersion {
         this.uploadedBy = uploadedBy;
     }
 
-    public LocalDateTime getUploadedAt() {
+    public Long getUploadedAt() {
         return uploadedAt;
     }
 
-    public void setUploadedAt(LocalDateTime uploadedAt) {
+    public void setUploadedAt(Long uploadedAt) {
         this.uploadedAt = uploadedAt;
     }
 
