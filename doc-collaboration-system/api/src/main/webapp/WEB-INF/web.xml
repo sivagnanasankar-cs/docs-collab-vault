@@ -7,7 +7,7 @@
 
   <servlet>
     <servlet-name>HealthCheckServlet</servlet-name>
-    <servlet-class>org.company.doccollab.api.HealthCheckServlet</servlet-class>
+    <servlet-class>com.doccollab.main.servlet.HealthCheckServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.company.doccollab</groupId>
+        <groupId>com.doccollab</groupId>
         <artifactId>doc-collaboration-system</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>

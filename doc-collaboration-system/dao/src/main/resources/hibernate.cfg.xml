@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/doccollab</property>
+        <property name="connection.username">user</property>
+        <property name="connection.password">password</property>
+
+        <!-- JDBC connection pool (use HikariCP) -->
+        <property name="connection.provider_class">com.zaxxer.hikari.hibernate.HikariConnectionProvider</property>
+        <property name="hikari.dataSource.cachePrepStmts">true</property>
+        <property name="hikari.dataSource.prepStmtCacheSize">250</property>
+        <property name="hikari.dataSource.prepStmtCacheSqlLimit">2048</property>
+
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
+    </session-factory>
+</hibernate-configuration>
