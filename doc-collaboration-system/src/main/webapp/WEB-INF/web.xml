@@ -15,4 +15,24 @@
     <url-pattern>/health</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>TokenServlet</servlet-name>
+    <servlet-class>com.doccollab.auth.servlets.TokenServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TokenServlet</servlet-name>
+    <url-pattern>/oauth/token</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>OAuthFilter</filter-name>
+    <filter-class>com.doccollab.auth.servlets.OAuthFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>OAuthFilter</filter-name>
+    <url-pattern>/api/v1/*</url-pattern>
+  </filter-mapping>
+
 </web-app>

@@ -24,20 +24,28 @@ public class FileMeta {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_user_id", nullable = false)
-    private User owner;
+    private User user;
 
-    @Column(nullable = false)
-    private String path;
+    @Column(name = "file_name", nullable = false)
+    private String fileName;
 
-    private long size;
+    @Column(name = "file_size")
+    private long fileSize;
 
-    private String mime;
+    @Column(name = "mime_type")
+    private String mimeType;
+
+    @Column(name = "current_version_id")
+    private Long currentVersionId;
 
     @Column(name = "created_at", updatable = false)
     private Long createdAt;
 
-    @Column(name = "current_version_id")
-    private Long currentVersionId;
+    @Column(name = "updated_at")
+    private Long updatedAt;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Long getId() {
         return id;
@@ -63,36 +71,44 @@ public class FileMeta {
         this.application = application;
     }
 
-    public User getOwner() {
-        return owner;
+    public User getUser() {
+        return user;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getPath() {
-        return path;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
-    public long getSize() {
-        return size;
+    public long getFileSize() {
+        return fileSize;
     }
 
-    public void setSize(long size) {
-        this.size = size;
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
     }
 
-    public String getMime() {
-        return mime;
+    public String getMimeType() {
+        return mimeType;
     }
 
-    public void setMime(String mime) {
-        this.mime = mime;
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    public Long getCurrentVersionId() {
+        return currentVersionId;
+    }
+
+    public void setCurrentVersionId(Long currentVersionId) {
+        this.currentVersionId = currentVersionId;
     }
 
     public Long getCreatedAt() {
@@ -103,11 +119,19 @@ public class FileMeta {
         this.createdAt = createdAt;
     }
 
-    public Long getCurrentVersionId() {
-        return currentVersionId;
+    public Long getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setCurrentVersionId(Long currentVersionId) {
-        this.currentVersionId = currentVersionId;
+    public void setUpdatedAt(Long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
